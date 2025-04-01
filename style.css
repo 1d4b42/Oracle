@@ -1,0 +1,312 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace;
+  color: #929292;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* 疑似要素の基準位置 */
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(77%); /* 背景を暗くする */
+  z-index: -1; /* 背景を一番下に配置 */
+}
+
+
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #1e1e1e;
+  overflow: hidden; /* スクロールを無効化 */
+}
+
+
+.folder {
+      font-size: 12px; /* 文字を小さく */
+      display: inline-flex;
+      flex-direction: column; /* アイコンとテキストを縦に配置 */
+      align-items: center; /* 中央揃え */
+      user-select: none; /* 画像やテキストの選択を無効化 */
+      cursor: move; /* ドラッグ中のカーソルを変更 */
+    }
+    .folder img {
+      height: 4em; /* アイコンサイズを大きく */
+      width: auto;
+      margin-bottom: 15px; /* アイコンとテキストの間にスペースを追加 */
+    }
+
+#desktop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.folder {
+  position: absolute;
+  padding: 10px;
+  background-color: #1e1e1e00;
+  color: #ffffff;
+  text-align: center;
+  width: 60px;
+  height: 80px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.folder:hover {
+  background-color: #00003e22;
+}
+
+.window {
+  width: 400px;
+  height: 300px;
+  background: #1e1e1e99;
+  border: 2px solid #1e1e1ebb;
+  position: absolute;
+  top: 50px;
+  left: 220px;
+  z-index: 1;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  resize: both;
+  overflow: hidden;
+}
+
+/* 小さな CMD 風ウィンドウ */
+.window-dialog {
+  width: 300px;  /* 画面の 1/4 サイズ */
+  height: 200px;
+  background-color: #0f0f0f;
+  color: #0f0;
+  border: 2px solid #0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* メッセージ部分の中央寄せ */
+.window-dialog .console-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1; /* 高さを埋める */
+  padding: 10px;
+  text-align: center;
+}
+
+/* メッセージをボックスの中央に */
+.window-dialog .console-output {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre-line;
+  font-size: 14px;
+}
+
+.green-link {
+  color: #00FF00; /* 緑色 */
+  text-decoration: none; /* 下線を消す場合 */
+}
+
+.green-link:hover {
+  color: #00CC00; /* ホバー時の緑色 */
+}
+
+
+.window-header {
+  position: relative;  /* 追加 */
+  background: #1e1e1e99;
+  padding: 8px;
+  color: #d4d4d4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  box-sizing: border-box; /* 追加 */
+}
+
+.close-btn {
+  position: absolute;
+  top: 50%;  
+  right: 0; /* 変更 */
+  transform: translateY(-50%); /* 上下中央揃え */
+  z-index: 1000; /* 変更：close-btnのz-indexを1000に設定して優先させる */
+  width: 50px;
+  height: 30px;
+  background: rgba(255, 0, 0, 0.0); /* デバッグ用 */
+  border: none;
+  color: #d4d4d4;
+  font-size: 18px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* 追加 */
+}
+
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #555;
+  right: 0;
+  bottom: 0;
+  cursor: se-resize;
+}
+
+
+
+
+.console-window {
+  width: 600px;
+  height: 350px;
+  background-color: rgba(0, 0, 0, 0.8); /* 半透明の黒 */
+  color: #00ff00; /* 緑 */
+  font-family: Consolas, monospace;
+  font-size: 14px;
+}
+
+.console-content {
+  padding: 10px;
+  overflow-y: auto;
+  height: calc(100% - 70px);
+}
+
+.console-output {
+  white-space: pre-wrap;
+}
+
+.console-input {
+  display: flex;
+  align-items: center;
+}
+
+.console-input span {
+  color: #00ff00; /* 緑 */
+}
+
+.console-input input {
+  background: transparent;
+  border: none;
+  color: #00ff00; /* 緑 */
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+.green-text {
+  color: #00ff00; /* 緑 */
+}
+
+.orange-text {
+  color: #ff8800; /* オレンジ */
+}
+
+.red-text {
+  color: #ff0000; /* オレンジ */
+}
+
+
+.yellow-text {
+  color: #d9ff00; /* オレンジ */
+}
+
+.ascii-art {
+  font-family: monospace;
+  white-space: pre;
+  color: #00ff00; /* 緑 */
+}
+
+
+
+
+/* 🖥 近未来的タスクバー */
+#taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background: rgba(20, 20, 20, 0.6); /* 半透明 */
+  backdrop-filter: blur(8px); /* ガラス風 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  font-family: "Roboto Mono", monospace;
+  box-shadow: 0 -2px 10px rgba(0, 255, 255, 0.2);
+  border-top: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+/* ⏯ 近未来的スタートボタン */
+#start-button {
+  background: linear-gradient(135deg, #00ffee, #00ffee);
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  text-shadow: 0 0 5px #00ffee, 0 0 10px #00ffee;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+#start-button:hover {
+  background: linear-gradient(135deg, #00ffee, #00ffee);
+  box-shadow: 0 0 15px #00ffee;
+}
+
+/* 📂 タスクバーのウィンドウ一覧 */
+#taskbar-windows {
+  flex-grow: 1;
+  display: flex;
+  gap: 8px;
+  padding: 0 10px;
+}
+
+/* 🖼 近未来的タスクボタン */
+.taskbar-item {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  padding: 8px 15px;
+  border-radius: 5px;
+  color: #00ffee;
+  text-shadow: 0 0 5px #00ffee, 0 0 10px #00ffee;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.taskbar-item:hover {
+  background: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 10px #00ffee;
+}
+
+/* ⏰ 近未来的デジタル時計 */
+#taskbar-clock {
+  font-size: 16px;
+  font-weight: bold;
+  padding-right: 30px;
+  color: #00ffee;
+  text-shadow: 0 0 5px #00ffee, 0 0 10px #00ffee;
+}
+
