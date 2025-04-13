@@ -342,3 +342,26 @@ html {
   text-shadow: 0 0 5px #00ffee, 0 0 10px #00ffee;
 }
 
+
+.choice-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;         /* ボタン同士の間隔 */
+  margin-top: auto;
+  padding: 12px 0;
+}
+
+.choice-btn {
+  background-color: #222;
+  color: #00ff00;
+  border: 1px solid #4caf50;
+  padding: 6px 12px;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.choice-btn:hover {
+  background-color: #333;
+}
