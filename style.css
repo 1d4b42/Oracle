@@ -18,12 +18,17 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('background.jpg');
+  background-image: var(--bg-img, url("background.jpg"));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(77%); /* 背景を暗くする */
+  transition: opacity 0.8s ease;
   z-index: -1; /* 背景を一番下に配置 */
+}
+
+body.fade-out::before {
+  opacity: 0;
 }
 
 
@@ -32,7 +37,7 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #1e1e1e;
+  background-color: #000000;
   overflow: hidden; /* スクロールを無効化 */
 }
 
